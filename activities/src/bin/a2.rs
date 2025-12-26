@@ -1,13 +1,4 @@
-// Topic: Basic arithmetic
-//
-// Program requirements:
-// * Displays the result of the sum of two numbers
-//
-// Notes:
-// * Use a function to add two numbers together
-// * Use a function to display the result
-// * Use the "{:?}" token in the println macro to display the result
-
+use std::time::Instant;
 enum Tipo {
   Sum,
   Multiplication,
@@ -22,11 +13,17 @@ fn calcular_valor(num1: i32, num2:i32, tipo_operacao: Tipo) -> i32 {
     Tipo::Division => return num1 / num2 
   }
 }
+fn print(first_number: i32, last_number: i32, calcular_valor: fn(i32, i32, Tipo) -> i32, calculation_type: Tipo, tipo: &str){
+  println!("a {tipo} de {first_number} com {last_number} vai ser igual a {:?}", calcular_valor(first_number, last_number, calculation_type))
+}
 fn main() {
+  let start: Instant = Instant::now();
   let first_number: i32 = 2;
   let last_number: i32 = 2;
-  println!("A soma de {first_number} + {last_number} = {:?}", calcular_valor(first_number, last_number, Tipo::Sum));
-  println!("A subtracao de {first_number} + {last_number} = {:?}", calcular_valor(first_number, last_number, Tipo::Sub));
-  println!("A divisao de {first_number} + {last_number} = {:?}", calcular_valor(first_number, last_number, Tipo::Division));
-  println!("A multiplicacao de {first_number} + {last_number} = {:?}", calcular_valor(first_number, last_number, Tipo::Multiplication))
+  print(first_number, last_number, calcular_valor, Tipo::Sum,"Soma");
+  print(first_number, last_number, calcular_valor, Tipo::Sub,"subtracao");
+  print(first_number, last_number, calcular_valor, Tipo::Division,"divisao");
+  print(first_number, last_number, calcular_valor, Tipo::Multiplication,"multiplicacao");
+  let duration = start.elapsed();
+  println!("Tempo pra executar o codigo: {:?}", duration);
 }
