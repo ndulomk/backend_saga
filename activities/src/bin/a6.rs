@@ -9,5 +9,25 @@
 // * Use a while statement
 // * Print the variable within the while loop
 // * Do not use break to exit the loop
+fn countdown(){
+  let mut number: i32 = 5;
+  // loop {
+  //   if number == 0 {
+  //     println!("Done!");
+  //     return
+  //   }
+  //   println!("{number}");
+  //   number = number - 1
+  // }
 
-fn main() {}
+  while number != 0 {
+    println!("{number}");
+    number = number - 1;
+  }
+  println!("Done!")
+}
+
+
+fn main() {
+  countdown()
+}
